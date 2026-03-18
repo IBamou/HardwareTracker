@@ -1,0 +1,266 @@
+
+ /* This CSS is copied and adapted from your Device Categories example */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+body {
+            background: #f8f5f0;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            color: #333;
+        }
+
+        nav {
+            background: #333 !important;
+            border-bottom: 2px solid #ffd700;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        nav a {
+            transition: color 0.3s ease;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            color: #ffd700 !important;
+            background: rgba(255,215,0,0.1);
+        }
+
+        .page-header {
+            text-align: center;
+            margin: 2rem 0 3rem;
+        }
+
+        .page-title {
+            color: #333;
+            font-size: 2.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .page-title i {
+            color: #8b4513;
+            font-size: 1.8rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+            border-left-color: #8b4513;
+        }
+
+        .category-name {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .category-name i {
+            color: #a0522d;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.7rem;
+            flex-wrap: wrap;
+        }
+        
+        .action-buttons form {
+            display: inline;
+        }
+
+        .btn-show {
+            background: #8b4513;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-show:hover {
+            background: #654321;
+            transform: scale(1.03);
+        }
+
+        .btn-edit {
+            background: #a0522d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-edit:hover {
+            background: #8b4513;
+            transform: scale(1.03);
+        }
+
+.btn-delete {
+    background: #d2691e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 36px;
+}
+
+        .btn-delete:hover {
+            background: #b8860b; /* Darker chocolate */
+            transform: scale(1.03);
+        }
+
+        .fixed-add-buttons {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .btn-fixed-add {
+            background: #ffd700;
+            color: #333;
+            border: none;
+            border-radius: 10px;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .btn-fixed-add:hover {
+            background: #ffed4e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            margin: 2rem 0;
+        }
+        
+        .empty-state i { color: #8b4513; font-size: 4rem; margin-bottom: 1.5rem; }
+        .empty-state h4 { color: #333; font-size: 1.6rem; margin-bottom: 0.8rem; }
+        .empty-state p { color: #555; font-size: 1rem; }
+
+        @media (max-width: 768px) {
+            .btn-fixed-add { padding: 0.8rem 1.2rem; font-size: 0.9rem; }
+            .fixed-add-buttons { bottom: 1rem; right: 1rem; }
+        }
+                /* Modal Styling to Match Theme */
+.modal-content {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.modal-header {
+    background-color: #f8f5f0;
+    border-bottom: 1px solid #e0d8cc;
+}
+
+.modal-title {
+    color: #333;
+    font-weight: 600;
+}
+
+.modal-body {
+    color: #555;
+    line-height: 1.6;
+}
+
+.modal-footer {
+    background-color: #f8f5f0;
+    border-top: 1px solid #e0d8cc;
+}
+
+.btn-secondary {
+    background-color: #e0d8cc;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+}
+
+.btn-secondary:hover {
+    background-color: #d0c4b0;
+    color: #333;
+}
+
+.btn-danger {
+    background-color: #8b4513;
+    border: none;
+    border-radius: 8px;
+}
+
+.btn-danger:hover {
+    background-color: #654321;
+}
+
+/* Added: Success Message Styling */
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Added: Modal Notice Styling */
+.modal-notice {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+    border-radius: 6px;
+    padding: 0.8rem;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}

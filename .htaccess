@@ -1,0 +1,30 @@
+RewriteEngine On
+RewriteBase /hardwareTracker/
+
+# Block direct access to anything inside /app
+RewriteRule ^app/ - [F,L]
+
+# Route everything else to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # --- SECURITY RULES ---
+    # Block direct access to the App folder EXCEPT for specific asset extensions
+    RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|jpeg|gif|svg|woff2?)$ [NC]
+    RewriteRule ^App/ - [F,L]
+
+    # --- MVC ROUTING RULES ---
+    # 1. If the requested URL is a real file, serve it directly (e.g., your CSS)
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+    # 2. If the requested URL is a real directory, serve it directly
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # 3. Otherwise, route everything else to index.php
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
