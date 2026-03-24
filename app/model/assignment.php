@@ -1,5 +1,4 @@
 <?php
-// require_once 'app/config/database.php';
 function addAssignment($info) {
     try {
         $sql = 'INSERT INTO assignments (hardware_id, employee_id, assigned_at) values(:hardware_id, :employee_id, current_timestamp())';

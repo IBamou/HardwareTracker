@@ -1,0 +1,161 @@
+ :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        body {
+            background: #f5f7fa;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .main-content {
+            padding: 1.5rem;
+        }
+        
+        .dashboard-header {
+            margin-bottom: 2rem;
+        }
+        
+        .dashboard-header h1 {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .stats-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--secondary);
+            transition: transform 0.3s;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stats-card h3 {
+            color: var(--primary);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stats-card p {
+            color: #666;
+            margin-bottom: 0;
+        }
+        
+        .stats-card i {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .card-total { border-left-color: var(--primary); }
+        .card-total i { color: var(--primary); }
+        
+        .card-assigned { border-left-color: var(--success); }
+        .card-assigned i { color: var(--success); }
+        
+        .card-unassigned { border-left-color: var(--warning); }
+        .card-unassigned i { color: var(--warning); }
+        
+        .card-value { border-left-color: var(--danger); }
+        .card-value i { color: var(--danger); }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+        }
+        
+        .dashboard-card h5 {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        .table th {
+            background: var(--light);
+            color: var(--primary);
+            font-weight: 600;
+            border: none;
+        }
+        
+        .table td {
+            vertical-align: middle;
+            border-color: var(--light);
+        }
+        
+        .badge-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .badge-available { background: #d4edda; color: #155724; }
+        .badge-in_use { background: #d1ecf1; color: #0c5460; }
+        .badge-maintenance { background: #fff3cd; color: #856404; }
+        
+        .btn-action {
+            padding: 0.25rem 0.5rem;
+            border-radius: 5px;
+            border: none;
+            margin: 0 2px;
+            font-size: 0.875rem;
+        }
+        
+        .btn-view { background: #e3f2fd; color: #1976d2; }
+        .btn-edit { background: #fff3cd; color: #856404; }
+        .btn-assign { background: #d4edda; color: #155724; }
+        
+        
+
+        .btn-quick {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+        
+        .btn-quick:hover {
+            background: #2980b9;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .price-display {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 1rem;
+        }

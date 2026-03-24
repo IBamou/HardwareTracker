@@ -7,7 +7,7 @@ switch ($_POST['action']) {
             $categoryId = $_POST['id'] ?? '';
             $categoryName = $_POST['name'] ?? '';
             $categoryDescription = $_POST['description'] ?? '';
-            include 'app/view/hardwares/hardware_category_form.php';
+            include 'app/view/hardwares/hardwareCategoryForm.php';
             exit();
 
         case 'editEmployeeCategory':
@@ -15,7 +15,7 @@ switch ($_POST['action']) {
             $categoryId = $_POST['id'] ?? '';
             $categoryName = $_POST['name'] ?? '';
             $categoryDescription = $_POST['description'] ?? '';
-            include 'app/view/employees/employee_category_form.php';
+            include 'app/view/employees/employeeCategoryForm.php';
             exit();
 
         case 'editHardware':
@@ -28,15 +28,12 @@ switch ($_POST['action']) {
             $price = $_POST['price'] ?? '';
             $employees = getEmployees();
             $isEditing = true;
-            include 'app/view/hardwares/hardware_form.php';
+            include 'app/view/hardwares/hardwareForm.php';
             exit();
 
         
         case 'addHardwareCategory':
-            unset($_SESSION['action']);
-            unset($_SESSION['category']);
-            unset($_SESSION['description']);
-            include 'app/view/hardwares/hardware_category_form.php';
+            include 'app/view/hardwares/hardwareCategoryForm.php';
             exit();
 // 
         case 'editEmployee':
@@ -46,26 +43,24 @@ switch ($_POST['action']) {
             $email = $_POST['email'];
             $departement = $_POST['departement'];
             $isEditing = true;
-            include 'app/view/employees/employee_form.php';
+            include 'app/view/employees/employeeForm.php';
             exit();
 
         case 'addEmployee':
             $category_id = $_POST['category_id'] ?? null;
             $iscategorized = $_POST['isuncategorized'];
-            include 'app/view/employees/employee_form.php';
+            include 'app/view/employees/employeeForm.php';
             exit();
 // 
         case 'addEmployeeCategory':
-            unset($_SESSION['action']);
-            unset($_SESSION['category']);
-            unset($_SESSION['description']);
-            include 'app/view/employees/employee_category_form.php';
+            include 'app/view/employees/employeeCategoryForm.php';
             exit();
         
         case 'addHardware':
             $category_id = $_POST['category_id'];
             $iscategorized = $_POST['isuncategorized'];
-            include 'app/view/hardwares/hardware_form.php';
+            $employees = getEmployees();
+            include 'app/view/hardwares/hardwareForm.php';
             exit();
 
 
@@ -79,7 +74,7 @@ switch ($_POST['action']) {
             $price = $_POST['price'] ?? '';
             $assignToEmployee = getAssignedEmployeeByHardware($hardware_id);
             $Readonly = true;
-            include 'app/view/hardwares/hardware_form.php';
+            include 'app/view/hardwares/hardwareForm.php';
             exit();
 
 }

@@ -1,10 +1,9 @@
 <?php 
-include 'app/model/hardware.php';
-include 'app/model/employee.php';
-include 'app/model/hardware_category.php';
+include 'app/model/hardwareModel.php';
+include 'app/model/employeeModel.php';
+include 'app/model/hardwareCategoryModel.php';
 include 'app/model/assignment.php';
-include 'app/model/employee_category.php';
-session_start();
+include 'app/model/employeeCategoryModel.php';
 
 
 
@@ -21,12 +20,12 @@ if (isset($_POST["action"])) {
 if (isset($_POST['operation'])){
 
     $info = [
-        'first_name'          => $_POST['first_name'] ?? '',
+        'first_name'    => $_POST['first_name'] ?? '',
         'category_id'   => $_POST['category_id'] ?? '',
-        'employee_id' => $_POST['employee_id'] ?? '',
-        'last_name' => $_POST['last_name'] ?? '',
-        'departement' => $_POST['departement'] ?? '',
-        'email' => $_POST['email'] ?? '',
+        'employee_id'   => $_POST['employee_id'] ?? '',
+        'last_name'     => $_POST['last_name'] ?? '',
+        'departement'   => $_POST['departement'] ?? '',
+        'email'         => $_POST['email'] ?? '',
     ];
 
     switch ($_POST['operation']){
@@ -48,24 +47,33 @@ if (isset($_POST['operation'])){
             addEmployeeToCategory($info);
             break;
 
+        case 'inactive':
+            updateEmployeeStatus($info['employee_id'], 'inactive', 2);
+            returnAssignment($info['employee_id']);
+            break;
+
+        case 'active':
+            updateEmployeeStatus($info['employee_id'], 'active', $info['category_id']);
+            break;
     }
 
-    header('location: /hardwareTracker/employeeCategory');
-    exit; 
-    }
 
-
-
+}
 
 
 
 $currentCategoryId = $_SESSION["categoryId"];
 $currentCategoryName = $_SESSION["categoryName"];
 $currentCategoryDescription = $_SESSION["categoryDescription"];
-
+if (isset($_GET["search"])){
+    $search = $_GET["search"];
+    $employees = searchEmployee($search);
+} else {
+    $employees = getEmployeesByCategory($currentCategoryId) ?: [];
+}
 $isUncategorized = ($currentCategoryId == 1) ? true : false;
-$employees = getEmployeesByCategory($currentCategoryId) ?: [];
+$inactive = ($currentCategoryId == 2) ? true : false;
 $categories = getEmployeeCategories() ?: [];
 
 
-include 'app/view/employees/employee_category.php';
+include 'app/view/employees/employeeCategory.php';

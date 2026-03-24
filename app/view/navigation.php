@@ -1,12 +1,23 @@
 <?php
 $activePage = $_SERVER['REQUEST_URI']; 
+$page = isset($_GET['url']) && !empty($_GET['url']) ? trim($_GET['url'], '/') : 'dashboard'; 
+$placeholders = ['hardwares'         => 'search hardware category...',
+                 'hardwareCategory'  => 'search hardware in category...',     
+                 'employees'         => 'search employee category...',
+                 'employeeCategory'  => 'search employee in category...'
+                ];
+$validPages = ['hardwares', 'hardwareCategory', 'employees', 'employeeCategory']
 ?>
-
 <!-- Bootstrap Navbar with Theme Matching Styles -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="app/view/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+
 
 <style>
+    nav {
+        height: 70.91px;
+    }
     .navbar-custom {
         background-color: #333 !important;
         border-bottom: 2px solid #ffd700;
@@ -60,6 +71,8 @@ $activePage = $_SERVER['REQUEST_URI'];
     }
 </style>
 
+
+
 <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
     <div class="container-fluid">
         <!-- Brand Name -->
@@ -67,7 +80,13 @@ $activePage = $_SERVER['REQUEST_URI'];
             <i class="bi bi-gear-wide-connected me-2"></i>
             Hardware Tracker
         </a>
-
+        
+        <?php if(in_array($page, $validPages) && !isset($_POST['turn_off_search'])): ?>
+        <form class="d-flex ms-auto form-control me-2 rounded-pill shadow-sm border-0 bg-light" method="get" action="<?=$page?>" style="width:100%; margin-top:2px; margin-bottom:2px">
+            <input type="search" name="search" class="form-control me-2 rounded-pill shadow-sm border-0 bg-light" placeholder="<?=$placeholders[$page]?>">
+            <button class="btn btn-outline-warning rounded-pill" type="submit">Search</button>
+        </form>
+        <?php endif;?>
         <!-- Mobile Toggler -->
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

@@ -1,9 +1,9 @@
 <?php 
-include 'app/model/hardware.php';
-include 'app/model/employee.php';
-include 'app/model/hardware_category.php';
+include 'app/model/hardwareCategoryModel.php';
+include 'app/model/employeeModel.php';
+include 'app/model/hardwareModel.php';
 include 'app/model/assignment.php';
-session_start();
+
 
 
 if (isset($_POST["showCategory"])) {
@@ -34,14 +34,18 @@ if (isset($_POST['operation'])){
 
         case 'addHardware':
             addHardware($info);
+            $info['hardware_id'] = getHardware($info['serial_number'])['id'];
+            addToLogs($info, 'added', $info['status']);
             break;
         
         case 'editHardware':
-            updateHardware($info);
+            if (checkUpdate($info)) {
+                addToLogs($info, 'updated', $info['status']);
+                updateHardware($info);   
+            } 
             break;
-
+            
         case 'uncatigorizeHardware':
-            echo 'Uncategorizing hardware...';
             uncatigorizeHardware($info['hardware_id']);
             $actionSuccess = true;
             break;
@@ -51,21 +55,19 @@ if (isset($_POST['operation'])){
             break;
 
         case 'assignHardwareToEmployee':
+            addToLogs($info, 'assigned', 'assigned');
             addAssignment($info);
             updateHardwareStatus($info['hardware_id'], 'assigned');
             break;
 
         case 'returnHardware':
+            addToLogs($info, 'returned', 'available');
             updateAssignment($info['hardware_id']);
             updateHardwareStatus($info['hardware_id'], 'available');
             break;
 
     }
-
-    header('location: /hardwareTracker/hardwareCategory');
-    exit; 
     }
-
 
 
 
@@ -74,11 +76,18 @@ if (isset($_POST['operation'])){
 $currentCategoryId = $_SESSION["categoryId"];
 $currentCategoryName = $_SESSION["categoryName"];
 $currentCategoryDescription = $_SESSION["categoryDescription"];
+$inSreach = false;
+if (isset($_GET["search"])){
+    $search = $_GET["search"];
+    $inSreach = true;
+    $hardwares = searchHardware($search);
+} else {
+    $hardwares = getHardwaresByCategory($currentCategoryId);
+}
+
 
 $isUncategorized = ($currentCategoryId == 1) ? true : false;
-$hardwares = getHardwaresByCategory($currentCategoryId);
 $employees = getEmployees() ?: [];
-$categories = getCategories() ?: [];
+$categories = getHardwareCategories() ?: [];
 
-
-include 'app/view/hardwares/hardware_category.php';
+include 'app/view/hardwares/hardwareCategory.php';
